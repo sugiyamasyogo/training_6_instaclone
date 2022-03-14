@@ -23,10 +23,7 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
-        Locale('en', ''), // English, no country code
-        Locale('js', ''), // japanese, no country code
-      ],
+      supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(
           brightness: Brightness.dark,
           elevatedButtonTheme: ElevatedButtonThemeData(

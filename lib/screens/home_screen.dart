@@ -12,10 +12,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        S.of(context).appTitle,
-        style: TextStyle(fontSize: 40.0),
+    return Scaffold(
+      body: Center(
+        child: Text(
+          S.of(context).appTitle,style: TextStyle(fontSize: 30.0),
+        ),
       ),
     );
   }
