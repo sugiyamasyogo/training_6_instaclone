@@ -49,13 +49,12 @@ class UserRepository {
     } catch(error) {
       print("sign in error caught!: ${error.toString()}");
       return false;
-
     }
   }
 
   _convertToUser(auth.User firebaseUser) {
     return User(
-      userId: firebaseUser.uid ?? "",
+      userId: firebaseUser.uid,
       displayName: firebaseUser.displayName ?? "",
       inAppUserName: firebaseUser.displayName ?? "",
       photoUrl: firebaseUser.photoURL ?? "",
