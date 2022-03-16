@@ -41,9 +41,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           brightness: Brightness.dark,
           elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(primary: Colors.grey),
+            style: ElevatedButton.styleFrom(primary: Colors.white),
           ),
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: IconThemeData(color: Colors.white),
           fontFamily: RegularFont),
       home: FutureBuilder(
         future: loginViewModel.isSingIn(),
