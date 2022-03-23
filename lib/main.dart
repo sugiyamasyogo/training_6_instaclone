@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           brightness: Brightness.dark,
           elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(primary: Colors.white),
+            style: ElevatedButton.styleFrom(primary: Colors.black26),
           ),
           iconTheme: IconThemeData(color: Colors.white),
           fontFamily: RegularFont),

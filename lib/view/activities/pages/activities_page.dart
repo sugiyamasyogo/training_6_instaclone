@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ActivitiesPage extends StatelessWidget {
   const ActivitiesPage({Key? key}) : super(key: key);

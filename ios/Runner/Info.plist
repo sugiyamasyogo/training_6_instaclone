@@ -64,5 +64,23 @@
     	</dict>
     </array>
     <!-- End of the Google Sign-in Section -->
+    <!-- Image_picker Section -->
+    <key>NSPhotoLibraryUsageDescription</key>
+     <string>Your Photo library is required for this app</string>
+
+     <key>NSCameraUsageDescription</key>
+          <string>Your Camera is required for this app</string>
+
+          <key>NSMicrophoneUsageDescription</key>
+               <string>Your Microphone is required for this app</string>
+
+    <!-- End of the Image_picker Section -->
+
+    <!-- Geolocator Section -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app needs access to location when open.</string>
+    <!-- End of the Geolocator Section -->
+
+
 </dict>
 </plist>
