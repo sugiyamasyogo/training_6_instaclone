@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart'as geocoding;
+import 'package:training_6_instaclone/data_models/location.dart';
 import 'package:training_6_instaclone/models/repositories/user_repository.dart';
 import 'package:training_6_instaclone/utils/constants.dart';
 
@@ -14,6 +16,9 @@ class PostViewModel extends ChangeNotifier {
 
   File? imageFile;
 
+  Location? location;
+  String locationString = "";
+
   bool isProcessing = false;
   bool isImagePicked = false;
 
@@ -26,9 +31,16 @@ class PostViewModel extends ChangeNotifier {
     print("pickedImage: ${imageFile?.path}");
 
     // TODO 位置情報取得
+    location = await postRepository.getCurrentLocation();
+    locationString = (location != null) ? _toLocationString(location!) : "";
+    print("location:${locationString}");
 
     if (imageFile != null) isImagePicked = true;
     isProcessing = false;
     notifyListeners();
+  }
+
+  _toLocationString(Location location) {
+    return location.country + " " + location.state + " " + location.city;
   }
 }
