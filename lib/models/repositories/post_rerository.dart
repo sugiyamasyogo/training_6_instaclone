@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:geocoding/geocoding.dart'as geocoding;
 import 'package:image_picker/image_picker.dart';
+import 'package:training_6_instaclone/data_models/location.dart';
 import 'package:training_6_instaclone/models/db/database_manager.dart';
 import 'package:training_6_instaclone/models/location/location_manager.dart';
 import 'package:training_6_instaclone/utils/constants.dart';
@@ -27,5 +29,13 @@ class PostRepository {
           ? File(pickedImage.path)
           : null;
     }
+  }
+
+  Future<Location>getCurrentLocation() async {
+    return await locationManager.getCurrentLocation();
+  }
+
+  Future<Location>updateLocation(double latitude, double longitude) async {
+    return await locationManager.updateLocation(latitude,longitude);
   }
 }
