@@ -45,4 +45,11 @@ class PostViewModel extends ChangeNotifier {
   _toLocationString(Location location) {
     return location.country + " " + location.state + " " + location.city;
   }
+
+  Future<void>updateLocation(double latitude, double longitude) async {
+    location = await postRepository.updateLocation(latitude,longitude);
+    locationString = (location != null) ? _toLocationString(location!) : "";
+    notifyListeners();
+
+  }
 }
