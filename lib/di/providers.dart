@@ -6,6 +6,7 @@ import 'package:training_6_instaclone/models/repositories/user_repository.dart';
 import 'package:training_6_instaclone/view_models/login_view_model.dart';
 
 import '../models/repositories/post_rerository.dart';
+import '../view_models/feed_view_model.dart';
 import '../view_models/post_view_model.dart';
 
 List<SingleChildWidget> globalProvider = [
@@ -41,6 +42,12 @@ List<SingleChildWidget> viewModels = [
   ),
   ChangeNotifierProvider<PostViewModel>(
     create: (context) => PostViewModel(
+      userRepository: context.read<UserRepository>(),
+      postRepository: context.read<PostRepository>(),
+    ),
+  ),
+  ChangeNotifierProvider<FeedViewModel>(
+    create: (context) => FeedViewModel(
       userRepository: context.read<UserRepository>(),
       postRepository: context.read<PostRepository>(),
     ),

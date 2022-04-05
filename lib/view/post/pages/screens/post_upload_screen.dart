@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:training_6_instaclone/generated/l10n.dart';
 import 'package:training_6_instaclone/utils/constants.dart';
+import 'package:training_6_instaclone/view/common/dialog/confirm_dialog.dart';
 import 'package:training_6_instaclone/view_models/post_view_model.dart';
 
 import '../../components/post_caption_part.dart';
@@ -40,8 +41,17 @@ class PostUploadScreen extends StatelessWidget {
                     )
                   : IconButton(
                       icon: Icon(Icons.done),
-                      //TODO　ダイアログ出して投稿処理
-                      onPressed: () => null,
+                      //ダイアログ出して投稿処理
+                      onPressed: () => showConfirmDialog(
+                          context: context,
+                          title: S.of(context).post,
+                          content: S.of(context).postConfirm,
+                          onConfirmed: (isConfirmed){
+                            if (isConfirmed){
+                              _post(context);
+                            }
+                          }
+                      ),
                     ),
             ],
           ),
@@ -67,9 +77,15 @@ class PostUploadScreen extends StatelessWidget {
     );
   }
 
-  //TODO
-  _cancelPost(BuildContext context) {
-    //TODO viewModel#cancelPost
+  _cancelPost(BuildContext context)  {
+    final postViewModel = context.read<PostViewModel>();
+     postViewModel.cancelPost();
+    Navigator.pop(context);
+  }
+
+  void _post(BuildContext context) async {
+    final postViewModel = context.read<PostViewModel>();
+    await postViewModel.post();
     Navigator.pop(context);
   }
 }
