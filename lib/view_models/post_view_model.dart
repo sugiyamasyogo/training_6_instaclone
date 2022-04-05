@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart'as geocoding;
+import 'package:geocoding/geocoding.dart' as geocoding;
 import 'package:training_6_instaclone/data_models/location.dart';
 import 'package:training_6_instaclone/models/repositories/user_repository.dart';
 import 'package:training_6_instaclone/utils/constants.dart';
@@ -12,7 +12,7 @@ class PostViewModel extends ChangeNotifier {
   final UserRepository userRepository;
   final PostRepository postRepository;
 
-  PostViewModel({required this.userRepository,required this.postRepository});
+  PostViewModel({required this.userRepository, required this.postRepository});
 
   File? imageFile;
 
@@ -46,10 +46,33 @@ class PostViewModel extends ChangeNotifier {
     return location.country + " " + location.state + " " + location.city;
   }
 
-  Future<void>updateLocation(double latitude, double longitude) async {
-    location = await postRepository.updateLocation(latitude,longitude);
+  Future<void> updateLocation(double latitude, double longitude) async {
+    location = await postRepository.updateLocation(latitude, longitude);
     locationString = (location != null) ? _toLocationString(location!) : "";
     notifyListeners();
+  }
 
+  Future<void> post() async {
+    if (imageFile == null) return;
+
+    isProcessing = true;
+    notifyListeners();
+
+    await postRepository.post(
+      UserRepository.currentUser!,
+      imageFile!,
+      caption,
+      location!,
+      locationString,
+    );
+    isProcessing = false;
+    isImagePicked = false;
+    notifyListeners();
+  }
+
+  void cancelPost()  {
+    isProcessing = false;
+    isImagePicked = false;
+    notifyListeners();
   }
 }
